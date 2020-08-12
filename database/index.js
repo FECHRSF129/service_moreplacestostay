@@ -21,7 +21,14 @@ let roomSchema = new mongoose.Schema({
   superHost: Boolean
 })
 
+// This is to define the list schema
+let listSchema = new mongoose.Schema({
+  listName: String,
+  numberOfItems: Number
+});
+
 const Room = mongoose.model('Room', roomSchema);
+const List = mongoose.model('List', listSchema);
 
 var getAllRooms = function(callback) {
   Room.find((err, rooms) => {
@@ -30,15 +37,16 @@ var getAllRooms = function(callback) {
       console.log(`Error getting rooms info from DB`)
     } else {
       callback(null, rooms)
-      console.log(rooms)
       console.log(`Success getting rooms info from DB`)
     }
   });
 }
 
+
 module.exports = {
   Room: Room,
   dbroom: dbroom,
+  List: List,
   getAllRooms: getAllRooms
 }
 
