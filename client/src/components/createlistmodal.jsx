@@ -15,19 +15,19 @@ class CreateListModal extends React.Component {
     this.setState({[event.target.name]: event.target.value})
   }
 
-  handleSubmit(event) {
-    event.prevenDefault();
-    this.props.createList(this.state.name);
-    this.props.onClickLike();
+  handleSubmit() {
+    this.props.onClickCreate(this.state.name);
+    this.props.onClickList(this.props.roomName, this.state.name);
+    this.props.closeCreateListModal()
   }
 
   render () {
     return (
       <div className="modalWrapper" style={styles.modalWrapper} style={{
-        opacity: this.props.show? "1" : "0"
+        opacity: this.props.createListShow? "1" : "0"
       }}>
         <div className="modalHeader" style={styles.modalHeader}>
-          <span className="closeModelBtn" onClick={this.props.CreateListModal}>X</span>
+          <span className="closeModelBtn" onClick={this.props.closeCreateListModal}>X</span>
           <span>Name this list</span>
         </div>
         <div className="modalContent">
@@ -36,9 +36,10 @@ class CreateListModal extends React.Component {
               <input name="name" value={this.state.name} onChange={this.handleChange}/>
             </label>
           </form>
+          <div>50 characters maximum</div>
         </div>
         <div className="modalFooter">
-          <div className="addList" onClick={this.handleSubmit}>Create a list</div>
+          <div className="addList" onClick={this.handleSubmit}>Create</div>
         </div>
       </div>
     )

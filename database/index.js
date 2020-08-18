@@ -42,12 +42,100 @@ var getAllRooms = function(callback) {
   });
 }
 
+var addToList = function(info, callback) {
+  let roomName = {roomName: info["roomName"]}
+  let savedList = {$set:{savedList: info["listName"]}}
+  Room.update(roomName, savedList, (err, result) => {
+    if (err) {
+      callback(err)
+      console.log("Error updating rooms")
+    } else {
+      callback(null, result)
+      console.log("Rooms updated")
+    }
+  })
+}
+
+var removeRoom = function(info, callback) {
+  let roomName = {roomName: info["roomName"]}
+  let savedList = {$set:{savedList: ""}}
+  Room.update(roomName, savedList, (err, result) => {
+    if (err) {
+      callback(err)
+      console.log("Error updating rooms")
+    } else {
+      callback(null, result)
+      console.log("Rooms updated")
+    }
+  })
+}
+
+var getAllLists = function(callback) {
+  List.find((err, lists) => {
+    if (err) {
+      callback(err)
+      console.log(`Error getting lists info from DB`)
+    } else {
+      callback(null, lists)
+      console.log(`Success getting lists info from DB`)
+    }
+  });
+}
+
+var incList = function(info, callback) {
+  let listName = {listName: info["listName"]}
+  let numberOfItems = {$inc:{numberOfItems:1}}
+  console.log(info["listName"])
+  List.update(listName, numberOfItems, (err, result) => {
+    if (err) {
+      callback(err)
+      console.log("Error updating rooms")
+    } else {
+      callback(null, result)
+      console.log("Rooms updated")
+    }
+  })
+}
+
+var decList = function(info, callback) {
+  let listName = {listName: info["listName"]}
+  let numberOfItems = {$inc:{numberOfItems:-1}}
+  List.update(listName, numberOfItems, (err, result) => {
+    if (err) {
+      callback(err)
+      console.log("Error updating rooms")
+    } else {
+      callback(null, result)
+      console.log("Rooms updated")
+    }
+  })
+}
+
+var createList = function(info, callback) {
+  let listName = {listName: info["listName"]}
+  let list = {listName: info["listName"], numberOfItems: 0}
+  List.update(listName, list, {upsert: true}, (err, result) => {
+    if (err) {
+      callback(err)
+      console.log("Error updating rooms")
+    } else {
+      callback(null, result)
+      console.log("Rooms updated")
+    }
+  })
+}
 
 module.exports = {
   Room: Room,
   dbroom: dbroom,
   List: List,
-  getAllRooms: getAllRooms
+  getAllRooms: getAllRooms,
+  getAllLists: getAllLists,
+  addToList: addToList,
+  incList: incList,
+  removeRoom: removeRoom,
+  decList: decList,
+  createList: createList
 }
 
 

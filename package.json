@@ -15,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.2",
+    "body-parser": "^1.19.0",
     "chai": "^4.2.0",
     "express": "^4.17.1",
     "faker": "^4.1.0",
@@ -25,8 +26,10 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "request": "^2.88.2",
+    "styled-components": "^5.1.1",
     "underscore": "^1.10.2",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "yarn": "^1.22.4"
   },
   "devDependencies": {
     "@babel/core": "^7.11.1",

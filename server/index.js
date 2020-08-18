@@ -7,12 +7,16 @@ var dbroom = require('../database/index.js');
 // var dblist = require('../database/index_list.js')
 // This refers to the module exported at the borrom of index_room.js, which is different from "dbroom" above; the purpose is to use the properties inside the module.
 const Room = require('../database/index.js');
+const List = require('../database/index.js');
 const path = require('path');
-const filePath = path.join(__dirname, '../client/dist')
+const filePath = path.join(__dirname, '../client/dist');
+const bodyparser = require('body-parser');
 
 // middleware
 app.use(express.static(filePath));
-app.use(express.json())
+app.use(express.json());
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded( {extended: true} ));
 
 // routes (will make a router to direct different routes)
 
@@ -28,6 +32,92 @@ app.get('/room', (req, res) => {
       res.send(result)
       res.end()
       console.log(`Server get room success`)
+    }
+  })
+})
+
+// Below is a GET request to obatin all of the list info
+app.get('/list', (req, res) => {
+  List.getAllLists((err, result) => {
+    if (err) {
+      res.status(401)
+      res.end()
+      console.log(err, `Server get list err`)
+    } else {
+      res.status(201)
+      res.send(result)
+      res.end()
+      console.log(`Server get list success`)
+    }
+  })
+})
+
+app.post('/room', (req, res) => {
+  let info = req.body;
+  Room.addToList(info, (err, result) => {
+    if (err) {
+      res.status(401)
+      res.send(err)
+    } else {
+      res.status(201)
+      res.send()
+      res.end()
+    }
+  })
+})
+
+app.post('/list', (req, res) => {
+  let info = req.body;
+  List.incList(info, (err, result) => {
+    if (err) {
+      res.status(401)
+      res.send(err)
+    } else {
+      res.status(201)
+      res.send()
+      res.end()
+    }
+  })
+})
+
+app.post('/removeRoom', (req, res) => {
+  let info = req.body;
+  Room.removeRoom(info, (err, result) => {
+    if (err) {
+      res.status(401)
+      res.send(err)
+    } else {
+      res.status(201)
+      res.send()
+      res.end()
+    }
+  })
+})
+
+app.post('/decList', (req, res) => {
+  let info = req.body;
+  List.decList(info, (err, result) => {
+    if (err) {
+      res.status(401)
+      res.send(err)
+    } else {
+      res.status(201)
+      res.send()
+      res.end()
+    }
+  })
+})
+
+app.post('/createList', (req, res) => {
+  let info = req.body;
+  List.createList(info, (err, result) => {
+    if (err) {
+      res.status(401)
+      res.send(err)
+    } else {
+      res.status(201)
+      res.send()
+      res.end()
     }
   })
 })
