@@ -18,7 +18,9 @@ let roomSchema = new mongoose.Schema({
   imageUrl: String,
   savedList: String,
   roomUrl: String,
-  superHost: Boolean
+  superHost: Boolean,
+  review: Number,
+  score: Number
 })
 
 // This is to define the list schema

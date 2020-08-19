@@ -45,39 +45,65 @@ function Display (props) {
     setCreateListShow(true)
   }
 
-  return (
-    <div>
-      <CarouselContainer>
-        <Carousel rooms={props.rooms} onClickLike={onClickLike} onClickUnlike={props.onClickUnlike} onClickUnlikeRM={onClickUnlikeRM}/>
-      </CarouselContainer>
+  if (show) {
+    return (
       <div>
-        <ModalContainer show={show}></ModalContainer>
+        <ListModalContainer show={show}></ListModalContainer>
         <section>
           <ListModal lists={props.lists} show={show} roomName={roomName} closeListModal={closeListModal} onClickList={props.onClickList} showSavedModal={showSavedModal} onClickCreateAList={onClickCreateAList}/>
         </section>
+        <CarouselContainer>
+          <Carousel rooms={props.rooms} onClickLike={onClickLike} onClickUnlike={props.onClickUnlike} onClickUnlikeRM={onClickUnlikeRM}/>
+        </CarouselContainer>
       </div>
+    )
+  } else if (savedShow) {
+    return (
       <div>
         <SavedModal savedShow={savedShow} listName={listName} onClickLike={onClickLike} onClickUnlike={props.onClickUnlike} roomName={roomName} closeSavedModal={closeSavedModal}/>
+        <CarouselContainer>
+          <Carousel rooms={props.rooms} onClickLike={onClickLike} onClickUnlike={props.onClickUnlike} onClickUnlikeRM={onClickUnlikeRM}/>
+        </CarouselContainer>
       </div>
+    )
+  } else if (createListShow) {
+    return (
       <div>
-        <CreateListModal createListShow={createListShow} closeCreateListModal={closeCreateListModal} onClickCreate={props.onClickCreate} onClickList={props.onClickList} roomName={roomName}/>
-      </div>
+         <CreateModalContainer createListShow={createListShow}></CreateModalContainer>
+         <CreateListModal createListShow={createListShow} closeCreateListModal={closeCreateListModal} onClickCreate={props.onClickCreate} onClickList={props.onClickList} roomName={roomName}/>
+            <CarouselContainer>
+            <Carousel rooms={props.rooms} onClickLike={onClickLike} onClickUnlike={props.onClickUnlike} onClickUnlikeRM={onClickUnlikeRM}/>
+          </CarouselContainer>
+          </div>
+    )
+  } else if (removedShow) {
+    return (
       <div>
         <RemovedModal removedShow={removedShow} listName={listName} roomName={roomName} onClickList={props.onClickList} showSavedModal={showSavedModal}/>
+        <CarouselContainer>
+          <Carousel rooms={props.rooms} onClickLike={onClickLike} onClickUnlike={props.onClickUnlike} onClickUnlikeRM={onClickUnlikeRM}/>
+        </CarouselContainer>
       </div>
-    </div>
-  )
+    )
+  } else {
+    return (
+      <div>
+        <CarouselContainer>
+          <Carousel rooms={props.rooms} onClickLike={onClickLike} onClickUnlike={props.onClickUnlike} onClickUnlikeRM={onClickUnlikeRM}/>
+        </CarouselContainer>
+      </div>
+    )
+  }
 }
 
 const CarouselContainer = styled.div`
-  z-index: 2000 !important;
   display: block;
   position: relative;
   --page-shell-max-content-width: 1280px;
   min-height: 100vh !important;
 `;
 
-const ModalContainer = styled.div`
+const ListModalContainer = styled.div`
   background: rgb(34, 34, 34) !important;
   position: fixed;
   width: 100%;
@@ -88,6 +114,21 @@ const ModalContainer = styled.div`
   left: 0px !important;
   overflow-y: auto !important;
   opacity: ${(props) => props.show? "0.6" : "0"};
+  z-index: 100;
+`;
+
+const CreateModalContainer = styled.div`
+  background: rgb(34, 34, 34) !important;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px !important;
+  right: 0px !important;
+  bottom: 0px !important;
+  left: 0px !important;
+  overflow-y: auto !important;
+  opacity: ${(props) => props.createListShow? "0.6" : "0"};
+  z-index: 100;
 `;
 
 const keyframe = keyframes`

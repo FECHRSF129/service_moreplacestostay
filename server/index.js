@@ -1,7 +1,7 @@
 // import dependencies
 var express = require('express');
 var app = express();
-var PORT = 3000;
+var PORT = 8000;
 // This refers to the "dbroom" variable defined at the top of index_room.js, which is different from "Room" below; the purpose of importing this variable is to verify whether the server is connected to DB.
 var dbroom = require('../database/index.js');
 // var dblist = require('../database/index_list.js')
@@ -21,7 +21,7 @@ app.use(bodyparser.urlencoded( {extended: true} ));
 // routes (will make a router to direct different routes)
 
 // Below is a GET request to obatin all of the room info
-app.get('/room', (req, res) => {
+app.get('/place/room', (req, res) => {
   Room.getAllRooms((err, result) => {
     if (err) {
       res.status(401)
@@ -37,7 +37,7 @@ app.get('/room', (req, res) => {
 })
 
 // Below is a GET request to obatin all of the list info
-app.get('/list', (req, res) => {
+app.get('/place/list', (req, res) => {
   List.getAllLists((err, result) => {
     if (err) {
       res.status(401)
@@ -52,7 +52,7 @@ app.get('/list', (req, res) => {
   })
 })
 
-app.post('/room', (req, res) => {
+app.post('/place/room', (req, res) => {
   let info = req.body;
   Room.addToList(info, (err, result) => {
     if (err) {
@@ -66,7 +66,7 @@ app.post('/room', (req, res) => {
   })
 })
 
-app.post('/list', (req, res) => {
+app.post('/place/list', (req, res) => {
   let info = req.body;
   List.incList(info, (err, result) => {
     if (err) {
@@ -80,7 +80,7 @@ app.post('/list', (req, res) => {
   })
 })
 
-app.post('/removeRoom', (req, res) => {
+app.post('/place/removeRoom', (req, res) => {
   let info = req.body;
   Room.removeRoom(info, (err, result) => {
     if (err) {
@@ -94,7 +94,7 @@ app.post('/removeRoom', (req, res) => {
   })
 })
 
-app.post('/decList', (req, res) => {
+app.post('/place/decList', (req, res) => {
   let info = req.body;
   List.decList(info, (err, result) => {
     if (err) {
@@ -108,7 +108,7 @@ app.post('/decList', (req, res) => {
   })
 })
 
-app.post('/createList', (req, res) => {
+app.post('/place/createList', (req, res) => {
   let info = req.body;
   List.createList(info, (err, result) => {
     if (err) {

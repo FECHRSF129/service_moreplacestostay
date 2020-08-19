@@ -25,7 +25,7 @@ class App extends React.Component {
   }
 
   getAllRooms () {
-    axios.get('/room')
+    axios.get('/place/room')
     .then((rooms) => {
       this.setState({
         rooms: rooms.data
@@ -37,7 +37,7 @@ class App extends React.Component {
   }
 
   getAllLists () {
-    axios.get('/list')
+    axios.get('/place/list')
     .then((lists) => {
       this.setState({
         lists: lists.data
@@ -49,22 +49,22 @@ class App extends React.Component {
   }
 
   onClickList (roomName, listName) {
-    axios.post('/room', {'roomName': roomName, 'listName': listName})
+    axios.post('/place/room', {'roomName': roomName, 'listName': listName})
     .then(() => {console.log(`Client like list post success`)})
     .catch()
     .then(() => {
-      axios.post('/list', {'listName': listName})
+      axios.post('/place/list', {'listName': listName})
       .then(() => {console.log(`Client list update success`)})
       .catch()
     })
   }
 
   onClickUnlike (roomName, listName) {
-    axios.post('/removeRoom', {'roomName': roomName, 'listName': listName})
+    axios.post('/place/removeRoom', {'roomName': roomName, 'listName': listName})
     .then(() => {console.log(`Client remove room from list post success`)})
     .catch()
     .then(() => {
-      axios.post('/decList', {'listName': listName})
+      axios.post('/place/decList', {'listName': listName})
       .then(() => {console.log(`Client list update success`)})
       .catch()
     })
@@ -72,7 +72,7 @@ class App extends React.Component {
 
   onClickCreate (listName) {
     console.log(`will write a post request to /list to create a list`)
-    axios.post('/createList', {'listName': listName})
+    axios.post('/place/createList', {'listName': listName})
     .then(() => {console.log(`Client create list success`)})
     .catch()
   }
@@ -88,4 +88,4 @@ class App extends React.Component {
   }
 };
 
-ReactDOM.render(<App/>, document.getElementById('app'));
+ReactDOM.render(<App/>, document.getElementById('moreplaces'));

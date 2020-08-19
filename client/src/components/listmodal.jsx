@@ -3,10 +3,12 @@ import ListItem from './listitem.jsx';
 import styled from 'styled-components';
 
 function ListModal (props) {
+
+
     return (
       <div>
         <ModalWrapper show={props.show}>
-          <ListModalFrame>
+          <ListModalFrame show={props.show}>
             <CloseModalBtnHolder>
               <CloseModalBtn onClick={() => {props.closeListModal()}}>
                 <CloseModalBtnIcon  aria-hidden="true" role="presentation" focusable="false" viewBox="0 0 32 32">
@@ -36,7 +38,7 @@ function ListModal (props) {
 }
 
 const ModalWrapper = styled.div`
-  opacity: ${(props) => props.show? "1" : "0"};
+  z-index: 200;
   -webkit-box-align: center !important;
   align-items: center !important;
   padding: 40px !important;

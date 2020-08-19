@@ -110,36 +110,18 @@ class Carousel extends React.Component{
 
 }
 
-// const styles = {
-//   viewPort: {
-//     position: "absolute",
-//     top: "50%",
-//     left: "50%",
-//     transform: "translate(-50%, -50%)",
-//     width: "1400px",
-//     height: "350px",
-//     backgroundColor: "white",
-//     overflow: "hidden",
-//   },
-//   cardContainer: {
-//     display: "flex",
-//     flexDirection: "row",
-//     width: "fit-content"
-//   }
-// }
-
 const ViewPort = styled.div`
   overflow-x: hidden !important;
   margin-right: -24px !important;
   position: relative !important;
   width: 1140px;
-  height: 348.66px;
+  height: 500px;
   backgroundColor: white;
   color: #222222 !important;
-    font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
-    font-weight: 400 !important;
-    font-size: 16px !important;
-    line-height: 20px !important;
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  line-height: 20px !important;
 `;
 
 const CardContainer = styled.div`

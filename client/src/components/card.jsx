@@ -33,16 +33,17 @@ function Review(props) {
           </path>
         </StarIcon>
       </ReviewStar>
-      <span>2 reviews</span>
+      <span>{props.room? props.room.score : null}</span>
+      <span>{props.room? props.room.review : 0} reviews</span>
     </ReviewHolder>
   )
 }
 
 function NoReview() {
   return(
-    <div>
+    <ReviewHolder>
       <NoReviewHolder>No reviews yet</NoReviewHolder>
-    </div>
+    </ReviewHolder>
   )
 }
 
@@ -66,7 +67,8 @@ class Cards extends React.Component {
   handleUnlikeButton () {
     var roomName = this.props.room? this.props.room.roomName : ''
     var listName = this.props.room? this.props.room.savedList : ''
-    this.props.onClickUnlike(roomName, listName)
+    this.props.onClickUnlike(roomName, listName);
+    this.props.onClickUnlikeRM(roomName, listName)
   }
 
   render () {
@@ -77,12 +79,12 @@ class Cards extends React.Component {
     } else {
       button = <UnlikeButton onClick={this.handleUnlikeButton}/>
     }
-    let numberOfReview = 0;
+    let numberOfReview = this.props.room? this.props.room.review : null;
     let review
-    if (numberOfReview !== 0) {
-      review = <Review />
-    } else {
+    if (numberOfReview === 0) {
       review = <NoReview />
+    } else {
+      review = <Review />
     }
     return (
       <div>
@@ -150,7 +152,7 @@ const MediaObject = styled.img`
   position: static !important;
   display: block;
   width: 100%;
-  height: 100%;
+  height: 176.656px;
   left: 0px;
   boder: 1px solid grey;
   border-Radius: 8px;
