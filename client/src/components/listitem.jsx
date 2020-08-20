@@ -24,7 +24,6 @@ function ListItem (props) {
             {props.list.numberOfItems} stays
           </NumberOfItemsHolder>
         </TextHolder>
-
       </ListHolder>
     </div>
   )

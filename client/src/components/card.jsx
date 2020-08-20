@@ -33,8 +33,21 @@ function Review(props) {
           </path>
         </StarIcon>
       </ReviewStar>
-      <span>{props.room? props.room.score : null}</span>
       <span>{props.room? props.room.review : 0} reviews</span>
+    </ReviewHolder>
+  )
+}
+
+function OneReview(props) {
+  return (
+    <ReviewHolder>
+      <ReviewStar>
+        <StarIcon viewBox="0 0 1000 1000" role="presentation" aria-hidden="true" focusable="false">
+          <path d="M 972 380 c 9 28 2 50 -20 67 L 725 619 l 87 280 c 11 39 -18 75 -54 75 c -12 0 -23 -4 -33 -12 L 499 790 L 273 962 a 58 58 0 0 1 -78 -12 a 50 50 0 0 1 -8 -51 l 86 -278 L 46 447 c -21 -17 -28 -39 -19 -67 c 8 -24 29 -40 52 -40 h 280 l 87 -279 c 7 -23 28 -39 52 -39 c 25 0 47 17 54 41 l 87 277 h 280 c 24 0 45 16 53 40 Z">
+          </path>
+        </StarIcon>
+      </ReviewStar>
+      <span>{props.room? props.room.review : 0} review</span>
     </ReviewHolder>
   )
 }
@@ -60,19 +73,21 @@ class Cards extends React.Component {
 
   handleLikeButton () {
     var roomName = this.props.room? this.props.room.roomName : ''
-    var listName = this.props.room? this.props.room.savedList : ''
-    this.props.onClickLike(roomName, listName);
+    this.props.onClickLike(roomName);
   }
 
   handleUnlikeButton () {
     var roomName = this.props.room? this.props.room.roomName : ''
     var listName = this.props.room? this.props.room.savedList : ''
     this.props.onClickUnlike(roomName, listName);
-    this.props.onClickUnlikeRM(roomName, listName)
+    this.props.onClickUnlikeRM(roomName, listName);
+    this.setState({
+      list: ''
+    })
   }
 
   render () {
-    let list = this.props.room? this.props.room.savedList : '';
+    let list = this.props.room? this.props.room.savedList : ''
     let button;
     if (list === '') {
       button = <LikeButton onClick={this.handleLikeButton}/>
@@ -83,8 +98,10 @@ class Cards extends React.Component {
     let review
     if (numberOfReview === 0) {
       review = <NoReview />
+    } else if (numberOfReview ===1) {
+      review = <OneReview room={this.props.room}/>
     } else {
-      review = <Review />
+      review = <Review room={this.props.room}/>
     }
     return (
       <div>

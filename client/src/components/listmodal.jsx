@@ -53,6 +53,7 @@ const ModalWrapper = styled.div`
   display: flex !important;
   flex-direction: row !important;
   justify-content: center !important;
+  transition:
 `;
 
 const ListModalFrame = styled.div `

@@ -57,6 +57,10 @@ class App extends React.Component {
       .then(() => {console.log(`Client list update success`)})
       .catch()
     })
+    .then(() => {
+      this.getAllRooms();
+      this.getAllLists()
+    })
   }
 
   onClickUnlike (roomName, listName) {
@@ -67,6 +71,10 @@ class App extends React.Component {
       axios.post('/place/decList', {'listName': listName})
       .then(() => {console.log(`Client list update success`)})
       .catch()
+    })
+    .then(() => {
+      this.getAllRooms();
+      this.getAllLists()
     })
   }
 
