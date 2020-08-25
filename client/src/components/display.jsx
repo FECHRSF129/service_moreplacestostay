@@ -50,9 +50,9 @@ function Display (props) {
   if (show) {
     return (
       <div>
-        <div>
+        {/* <div>
           <Topbar data-plugin-in-point-id="photo"/>
-        </div>
+        </div> */}
         <ListModalContainer show={show}></ListModalContainer>
         <section>
           <ListModal lists={props.lists} show={show} roomName={roomName} closeListModal={closeListModal} onClickList={props.onClickList} showSavedModal={showSavedModal} onClickCreateAList={onClickCreateAList}/>
@@ -65,9 +65,9 @@ function Display (props) {
   } else if (savedShow) {
     return (
       <div>
-        <div>
+        {/* <div>
           <Topbar data-plugin-in-point-id="photo"/>
-        </div>
+        </div> */}
         <SavedModal savedShow={savedShow} listName={listName} onClickLike={onClickLike} onClickUnlike={props.onClickUnlike} roomName={roomName} closeSavedModal={closeSavedModal}/>
         <CarouselContainer>
           <Carousel rooms={props.rooms} onClickLike={onClickLike} onClickUnlike={props.onClickUnlike} onClickUnlikeRM={onClickUnlikeRM}/>
@@ -77,9 +77,9 @@ function Display (props) {
   } else if (createListShow) {
     return (
       <div>
-          <div>
+          {/* <div>
             <Topbar data-plugin-in-point-id="photo"/>
-          </div>
+          </div> */}
          <CreateModalContainer createListShow={createListShow}></CreateModalContainer>
          <CreateListModal createListShow={createListShow} closeCreateListModal={closeCreateListModal} onClickCreate={props.onClickCreate} onClickList={props.onClickList} roomName={roomName}/>
             <CarouselContainer>
@@ -90,9 +90,9 @@ function Display (props) {
   } else if (removedShow) {
     return (
       <div>
-        <div>
+        {/* <div>
           <Topbar data-plugin-in-point-id="photo"/>
-        </div>
+        </div> */}
         <RemovedModal removedShow={removedShow} listName={listName} roomName={roomName} onClickList={props.onClickList} showSavedModal={showSavedModal}/>
         <CarouselContainer>
           <Carousel rooms={props.rooms} onClickLike={onClickLike} onClickUnlike={props.onClickUnlike} onClickUnlikeRM={onClickUnlikeRM}/>
@@ -102,9 +102,9 @@ function Display (props) {
   } else {
     return (
       <div>
-        <div>
+        {/* <div>
           <Topbar data-plugin-in-point-id="photo"/>
-        </div>
+        </div> */}
         <CarouselContainer>
           <Carousel rooms={props.rooms} onClickLike={onClickLike} onClickUnlike={props.onClickUnlike} onClickUnlikeRM={onClickUnlikeRM}/>
         </CarouselContainer>

@@ -73,7 +73,8 @@ const TopbarHolder = styled.div`
   -webkit-box-align: stretch !important;
   align-items: stretch !important;
   flex-wrap: wrap !important;
-  margin-bottom: 200px
+  margin-bottom: 200px;
+  z-index: 50;
 `;
 
 const ContentHolder = styled.div`
