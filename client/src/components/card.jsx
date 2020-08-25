@@ -60,6 +60,14 @@ function NoReview() {
   )
 }
 
+function SuperHost () {
+  return(
+    <SuperHostHolder>
+      <SuperHostWords>SUPERHOST</SuperHostWords>
+    </SuperHostHolder>
+  )
+}
+
 class Cards extends React.Component {
 
   constructor(props) {
@@ -94,6 +102,13 @@ class Cards extends React.Component {
     } else {
       button = <UnlikeButton onClick={this.handleUnlikeButton}/>
     }
+
+    let host = this.props.room? this.props.room.superHost : false
+    let superHost;
+    if (host) {
+      superHost = <SuperHost />
+    }
+
     let numberOfReview = this.props.room? this.props.room.review : null;
     let review
     if (numberOfReview === 0) {
@@ -108,6 +123,7 @@ class Cards extends React.Component {
         <Card>
           <MediaHolder>
             <MediaObject src={this.props.room? this.props.room.imageUrl : null}/>
+            <SuperHostWrapper>{superHost}</SuperHostWrapper>
             <ButtonHolder>{button}</ButtonHolder>
           </MediaHolder>
           <ReviewHolder>
@@ -173,14 +189,14 @@ const MediaObject = styled.img`
   left: 0px;
   boder: 1px solid grey;
   border-Radius: 8px;
-`
+`;
 
 const ButtonHolder = styled.div`
   padding: 8px;
   position: absolute !important;
   bottom: 75%;
   right: 0.05%;
-`
+`;
 
 const ButtonCSS = styled.div`
     -webkit-box-pack: center !important;
@@ -312,6 +328,42 @@ const Night = styled.span`
   font-weight: 400 !important;
   font-size: 16px !important;
   line-height: 20px !important;
+`;
+
+const SuperHostWrapper = styled.div`
+  padding: 8px;
+  position: absolute !important;
+  bottom: 75%;
+  left: 0.05%;
+`
+
+const SuperHostHolder = styled.div`
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 0.5px solid rgba(0, 0, 0, 0.2);
+  color: rgb(34, 34, 34);
+  display: inline-flex !important;
+  vertical-align: top !important;
+  background-clip: padding-box !important;
+  max-width: 100% !important;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px !important;
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+  border-radius: 4px !important;
+`;
+
+const SuperHostWords = styled.div`
+  font-size: 12px !important;
+  line-height: 16px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.04em !important;
+  max-height: 16px !important;
+  text-overflow: ellipsis !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 1 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
 `
 
 export default Cards

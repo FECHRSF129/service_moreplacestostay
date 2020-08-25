@@ -39,21 +39,17 @@ function ListModal (props) {
 
 const ModalWrapper = styled.div`
   z-index: 200;
-  -webkit-box-align: center !important;
   align-items: center !important;
   padding: 40px !important;
-  -webkit-box-pack: center !important;
-  -webkit-box-direction: normal !important;
-  -webkit-box-orient: horizontal !important;
   position: fixed !important;
   top: 0px !important;
   right: 0px !important;
-  bottom: 0px !important;
   left: 0px !important;
   display: flex !important;
   flex-direction: row !important;
   justify-content: center !important;
-  transition:
+  bottom: ${(props) => props.show? '0px': '-250px'};
+  transition: bottom 1.3s ease out;
 `;
 
 const ListModalFrame = styled.div `
@@ -68,6 +64,8 @@ const ListModalFrame = styled.div `
   flex-direction: column !important;
   box-shadow: rgba(0, 0, 0, 0.28) 0px 8px 28px !important;
   background: rgb(255, 255, 255) !important;
+  bottom: ${(props) => props.show? '0px': '-250px'};
+  transition: bottom 1.3s ease out;
 `;
 
 const CloseModalBtnHolder = styled.span`

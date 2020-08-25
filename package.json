@@ -10,7 +10,8 @@
     "seed": "node database/seeder.js",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage --colors"
+    "test:coverage": "jest --coverage --colors",
+    "build": "webpack --mode production"
   },
   "author": "Carrie Guan",
   "license": "ISC",

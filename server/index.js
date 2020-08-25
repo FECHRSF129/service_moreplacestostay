@@ -1,7 +1,7 @@
 // import dependencies
 var express = require('express');
 var app = express();
-var PORT = 8000;
+var PORT = process.env.port || 3000;
 // This refers to the "dbroom" variable defined at the top of index_room.js, which is different from "Room" below; the purpose of importing this variable is to verify whether the server is connected to DB.
 var dbroom = require('../database/index.js');
 // var dblist = require('../database/index_list.js')
@@ -21,7 +21,7 @@ app.use(bodyparser.urlencoded( {extended: true} ));
 // routes (will make a router to direct different routes)
 
 // Below is a GET request to obatin all of the room info
-app.get('/place/room', (req, res) => {
+app.get('/stay/room', (req, res) => {
   Room.getAllRooms((err, result) => {
     if (err) {
       res.status(401)
@@ -37,7 +37,7 @@ app.get('/place/room', (req, res) => {
 })
 
 // Below is a GET request to obatin all of the list info
-app.get('/place/list', (req, res) => {
+app.get('/stay/list', (req, res) => {
   List.getAllLists((err, result) => {
     if (err) {
       res.status(401)
@@ -52,7 +52,7 @@ app.get('/place/list', (req, res) => {
   })
 })
 
-app.post('/place/room', (req, res) => {
+app.post('/stay/room', (req, res) => {
   let info = req.body;
   Room.addToList(info, (err, result) => {
     if (err) {
@@ -66,7 +66,7 @@ app.post('/place/room', (req, res) => {
   })
 })
 
-app.post('/place/list', (req, res) => {
+app.post('/stay/list', (req, res) => {
   let info = req.body;
   List.incList(info, (err, result) => {
     if (err) {
@@ -80,7 +80,7 @@ app.post('/place/list', (req, res) => {
   })
 })
 
-app.post('/place/removeRoom', (req, res) => {
+app.post('/stay/removeRoom', (req, res) => {
   let info = req.body;
   Room.removeRoom(info, (err, result) => {
     if (err) {
@@ -94,7 +94,7 @@ app.post('/place/removeRoom', (req, res) => {
   })
 })
 
-app.post('/place/decList', (req, res) => {
+app.post('/stay/decList', (req, res) => {
   let info = req.body;
   List.decList(info, (err, result) => {
     if (err) {
@@ -108,7 +108,7 @@ app.post('/place/decList', (req, res) => {
   })
 })
 
-app.post('/place/createList', (req, res) => {
+app.post('/stay/createList', (req, res) => {
   let info = req.body;
   List.createList(info, (err, result) => {
     if (err) {

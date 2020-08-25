@@ -244,6 +244,7 @@ const NameText = styled.div`
   text-overflow: ellipsis !important;
   white-space: nowrap !important;
   overflow: hidden !important;
+  placeholder
 `;
 
 const InputTag = styled.input`

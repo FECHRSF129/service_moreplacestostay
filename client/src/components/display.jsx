@@ -77,6 +77,9 @@ function Display (props) {
   } else if (createListShow) {
     return (
       <div>
+          <div>
+            <Topbar data-plugin-in-point-id="photo"/>
+          </div>
          <CreateModalContainer createListShow={createListShow}></CreateModalContainer>
          <CreateListModal createListShow={createListShow} closeCreateListModal={closeCreateListModal} onClickCreate={props.onClickCreate} onClickList={props.onClickList} roomName={roomName}/>
             <CarouselContainer>
@@ -99,9 +102,6 @@ function Display (props) {
   } else {
     return (
       <div>
-        {/* <div>
-          <Header />
-        </div> */}
         <div>
           <Topbar data-plugin-in-point-id="photo"/>
         </div>
@@ -114,10 +114,9 @@ function Display (props) {
 }
 
 const CarouselContainer = styled.div`
+  margin-top: 200px;
   display: block;
   position: relative;
-  --page-shell-max-content-width: 1280px;
-  min-height: 100vh !important;
 `;
 
 const ListModalContainer = styled.div`
@@ -131,7 +130,9 @@ const ListModalContainer = styled.div`
   left: 0px !important;
   overflow-y: auto !important;
   opacity: ${(props) => props.show? "0.6" : "0"};
-  z-index: 100;
+  z-index: 70;
+  bottom: ${(props) => props.show? '0px': '-250px'};
+  transition: bottom 1.3s ease out;
 `;
 
 const CreateModalContainer = styled.div`
@@ -145,7 +146,8 @@ const CreateModalContainer = styled.div`
   left: 0px !important;
   overflow-y: auto !important;
   opacity: ${(props) => props.createListShow? "0.6" : "0"};
-  z-index: 100;
+  z-index: 70;
+  transition: bottom 10s ease-out;
 `;
 
 const keyframe = keyframes`

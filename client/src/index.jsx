@@ -2,8 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Display from "./components/display.jsx";
+import Topbar from './components/topbar.jsx';
+import styled from 'styled-components';
 
-class App extends React.Component {
+class Stay extends React.Component {
   constructor (props) {
     super(props)
 
@@ -25,7 +27,7 @@ class App extends React.Component {
   }
 
   getAllRooms () {
-    axios.get('/place/room')
+    axios.get('/stay/room')
     .then((rooms) => {
       this.setState({
         rooms: rooms.data
@@ -37,7 +39,7 @@ class App extends React.Component {
   }
 
   getAllLists () {
-    axios.get('/place/list')
+    axios.get('/stay/list')
     .then((lists) => {
       this.setState({
         lists: lists.data
@@ -49,11 +51,11 @@ class App extends React.Component {
   }
 
   onClickList (roomName, listName) {
-    axios.post('/place/room', {'roomName': roomName, 'listName': listName})
+    axios.post('/stay/room', {'roomName': roomName, 'listName': listName})
     .then(() => {console.log(`Client like list post success`)})
     .catch()
     .then(() => {
-      axios.post('/place/list', {'listName': listName})
+      axios.post('/stay/list', {'listName': listName})
       .then(() => {console.log(`Client list update success`)})
       .catch()
     })
@@ -64,11 +66,11 @@ class App extends React.Component {
   }
 
   onClickUnlike (roomName, listName) {
-    axios.post('/place/removeRoom', {'roomName': roomName, 'listName': listName})
+    axios.post('/stay/removeRoom', {'roomName': roomName, 'listName': listName})
     .then(() => {console.log(`Client remove room from list post success`)})
     .catch()
     .then(() => {
-      axios.post('/place/decList', {'listName': listName})
+      axios.post('/stay/decList', {'listName': listName})
       .then(() => {console.log(`Client list update success`)})
       .catch()
     })
@@ -80,7 +82,7 @@ class App extends React.Component {
 
   onClickCreate (listName) {
     console.log(`will write a post request to /list to create a list`)
-    axios.post('/place/createList', {'listName': listName})
+    axios.post('/stay/createList', {'listName': listName})
     .then(() => {console.log(`Client create list success`)})
     .catch()
   }
@@ -89,11 +91,42 @@ class App extends React.Component {
     return (
       <div>
         <div>
-          <Display rooms={this.state.rooms} onClickList={this.onClickList} onClickUnlike={this.onClickUnlike} onClickCreate={this.onClickCreate} lists={this.state.lists}/>
+          <StaticHolder>
+            <StaticConcent>
+              <StaticImgHolder src="https://fecmoreplacestostayimages.s3-us-west-1.amazonaws.com/image/static.png"/>
+            </StaticConcent>
+          </StaticHolder>
+          {/* <div>
+            <Topbar data-plugin-in-point-id="display"/>
+          </div> */}
+          <Display rooms={this.state.rooms} onClickList={this.onClickList} onClickUnlike={this.onClickUnlike} onClickCreate={this.onClickCreate} lists={this.state.lists} id="display"/>
+          <StaticHolder>
+          <StaticConcent>
+            <StaticImgHolder src="https://fecmoreplacestostayimages.s3-us-west-1.amazonaws.com/image/static2.png"/>
+          </StaticConcent>
+          </StaticHolder>
         </div>
       </div>
     )
   }
 };
 
-ReactDOM.render(<App/>, document.getElementById('moreplaces'));
+const StaticHolder = styled.div`
+  margin-top: 50px;
+  position: relative !important;;
+  display: block;
+`;
+
+const StaticConcent = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const StaticImgHolder = styled.img`
+  position: static !important;
+  display: block;
+  width: 1140px;
+`;
+
+ReactDOM.render(<Stay/>, document.getElementById('moreplaces'));

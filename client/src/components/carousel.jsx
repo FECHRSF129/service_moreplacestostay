@@ -60,62 +60,68 @@ class Carousel extends React.Component{
     let page = this.state.currentSet + 1;
     return(
       <div>
-        <ViewPort>
-          <TitleHolder>
-            <Title>
-              <Header>More places to stay</Header>
-            </Title>
-            <ArrowHolder>
-              <Page>{page} / 3</Page>
-              <ButtonHolder>
-                <Button onClick={this.handleBackward}>
+        <ViewPortContainer>
+          <ViewPort>
+            <TitleHolder>
+              <Title>
+                <Header>More places to stay</Header>
+              </Title>
+              <ArrowHolder>
+                <Page>{page} / 3</Page>
+                <ButtonHolder>
+                  <Button onClick={this.handleBackward}>
+                    <span>
+                      <Icon viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false" >
+                        <path d="m 13.7 16.29 a 1 1 0 1 1 -1.42 1.41 l -8 -8 a 1 1 0 0 1 0 -1.41 l 8 -8 a 1 1 0 1 1 1.42 1.41 l -7.29 7.29 Z" fillRule="evenodd">
+                          </path>
+                      </Icon>
+                    </span>
+                  </Button>
+                </ButtonHolder>
+                <ButtonHolder>
+                  <Button onClick={this.handleForward}>
                   <span>
-                    <Icon viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false" >
-                      <path d="m 13.7 16.29 a 1 1 0 1 1 -1.42 1.41 l -8 -8 a 1 1 0 0 1 0 -1.41 l 8 -8 a 1 1 0 1 1 1.42 1.41 l -7.29 7.29 Z" fillRule="evenodd">
-                        </path>
-                    </Icon>
-                  </span>
-                </Button>
-              </ButtonHolder>
-              <ButtonHolder>
-                <Button onClick={this.handleForward}>
-                <span>
-                    <Icon viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false" >
-                      <path d="m 4.29 1.71 a 1 1 0 1 1 1.42 -1.41 l 8 8 a 1 1 0 0 1 0 1.41 l -8 8 a 1 1 0 1 1 -1.42 -1.41 l 7.29 -7.29 Z" fillRule="evenodd">
-                        </path>
-                    </Icon>
-                  </span>
-                </Button>
-              </ButtonHolder>
-            </ArrowHolder>
-          </TitleHolder>
-          <CardContainer ref={refId => this.CardContainer = refId}>
-            <Cards room={this.props.rooms? this.props.rooms[0] : null} lists={this.props.lists} onClickLike={this.props.onClickLike} onClickUnlike={this.props.onClickUnlike} onClickUnlikeRM={this.props.onClickUnlikeRM}/>
-            <Cards room={this.props.rooms? this.props.rooms[1] : null} lists={this.props.lists} onClickLike={this.props.onClickLike} onClickUnlike={this.props.onClickUnlike} onClickUnlikeRM={this.props.onClickUnlikeRM}/>
-            <Cards room={this.props.rooms? this.props.rooms[2] : null} lists={this.props.lists} onClickLike={this.props.onClickLike} onClickUnlike={this.props.onClickUnlike} onClickUnlikeRM={this.props.onClickUnlikeRM}/>
-            <Cards room={this.props.rooms? this.props.rooms[3] : null} lists={this.props.lists} onClickLike={this.props.onClickLike} onClickUnlike={this.props.onClickUnlike} onClickUnlikeRM={this.props.onClickUnlikeRM}/>
-            <Cards room={this.props.rooms? this.props.rooms[4] : null} lists={this.props.lists} onClickLike={this.props.onClickLike} onClickUnlike={this.props.onClickUnlike} onClickUnlikeRM={this.props.onClickUnlikeRM}/>
-            <Cards room={this.props.rooms? this.props.rooms[5] : null} lists={this.props.lists} onClickLike={this.props.onClickLike} onClickUnlike={this.props.onClickUnlike} onClickUnlikeRM={this.props.onClickUnlikeRM}/>
-            <Cards room={this.props.rooms? this.props.rooms[6] : null} lists={this.props.lists} onClickLike={this.props.onClickLike} onClickUnlike={this.props.onClickUnlike} onClickUnlikeRM={this.props.onClickUnlikeRM}/>
-            <Cards room={this.props.rooms? this.props.rooms[7] : null} lists={this.props.lists} onClickLike={this.props.onClickLike} onClickUnlike={this.props.onClickUnlike} onClickUnlikeRM={this.props.onClickUnlikeRM}/>
-            <Cards room={this.props.rooms? this.props.rooms[8] : null} lists={this.props.lists} onClickLike={this.props.onClickLike} onClickUnlike={this.props.onClickUnlike} onClickUnlikeRM={this.props.onClickUnlikeRM}/>
-            <Cards room={this.props.rooms? this.props.rooms[9] : null} lists={this.props.lists} onClickLike={this.props.onClickLike} onClickUnlike={this.props.onClickUnlike} onClickUnlikeRM={this.props.onClickUnlikeRM}/>
-            <Cards room={this.props.rooms? this.props.rooms[10] : null} lists={this.props.lists} onClickLike={this.props.onClickLike} onClickUnlike={this.props.onClickUnlike} onClickUnlikeRM={this.props.onClickUnlikeRM}/>
-            <Cards room={this.props.rooms? this.props.rooms[11] : null} lists={this.props.lists} onClickLike={this.props.onClickLike} onClickUnlike={this.props.onClickUnlike} onClickUnlikeRM={this.props.onClickUnlikeRM}/>
-          </CardContainer>
-        </ViewPort>
+                      <Icon viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false" >
+                        <path d="m 4.29 1.71 a 1 1 0 1 1 1.42 -1.41 l 8 8 a 1 1 0 0 1 0 1.41 l -8 8 a 1 1 0 1 1 -1.42 -1.41 l 7.29 -7.29 Z" fillRule="evenodd">
+                          </path>
+                      </Icon>
+                    </span>
+                  </Button>
+                </ButtonHolder>
+              </ArrowHolder>
+            </TitleHolder>
+            <CardContainer ref={refId => this.CardContainer = refId}>
+              <Cards room={this.props.rooms? this.props.rooms[0] : null} lists={this.props.lists} onClickLike={this.props.onClickLike} onClickUnlike={this.props.onClickUnlike} onClickUnlikeRM={this.props.onClickUnlikeRM}/>
+              <Cards room={this.props.rooms? this.props.rooms[1] : null} lists={this.props.lists} onClickLike={this.props.onClickLike} onClickUnlike={this.props.onClickUnlike} onClickUnlikeRM={this.props.onClickUnlikeRM}/>
+              <Cards room={this.props.rooms? this.props.rooms[2] : null} lists={this.props.lists} onClickLike={this.props.onClickLike} onClickUnlike={this.props.onClickUnlike} onClickUnlikeRM={this.props.onClickUnlikeRM}/>
+              <Cards room={this.props.rooms? this.props.rooms[3] : null} lists={this.props.lists} onClickLike={this.props.onClickLike} onClickUnlike={this.props.onClickUnlike} onClickUnlikeRM={this.props.onClickUnlikeRM}/>
+              <Cards room={this.props.rooms? this.props.rooms[4] : null} lists={this.props.lists} onClickLike={this.props.onClickLike} onClickUnlike={this.props.onClickUnlike} onClickUnlikeRM={this.props.onClickUnlikeRM}/>
+              <Cards room={this.props.rooms? this.props.rooms[5] : null} lists={this.props.lists} onClickLike={this.props.onClickLike} onClickUnlike={this.props.onClickUnlike} onClickUnlikeRM={this.props.onClickUnlikeRM}/>
+              <Cards room={this.props.rooms? this.props.rooms[6] : null} lists={this.props.lists} onClickLike={this.props.onClickLike} onClickUnlike={this.props.onClickUnlike} onClickUnlikeRM={this.props.onClickUnlikeRM}/>
+              <Cards room={this.props.rooms? this.props.rooms[7] : null} lists={this.props.lists} onClickLike={this.props.onClickLike} onClickUnlike={this.props.onClickUnlike} onClickUnlikeRM={this.props.onClickUnlikeRM}/>
+              <Cards room={this.props.rooms? this.props.rooms[8] : null} lists={this.props.lists} onClickLike={this.props.onClickLike} onClickUnlike={this.props.onClickUnlike} onClickUnlikeRM={this.props.onClickUnlikeRM}/>
+              <Cards room={this.props.rooms? this.props.rooms[9] : null} lists={this.props.lists} onClickLike={this.props.onClickLike} onClickUnlike={this.props.onClickUnlike} onClickUnlikeRM={this.props.onClickUnlikeRM}/>
+              <Cards room={this.props.rooms? this.props.rooms[10] : null} lists={this.props.lists} onClickLike={this.props.onClickLike} onClickUnlike={this.props.onClickUnlike} onClickUnlikeRM={this.props.onClickUnlikeRM}/>
+              <Cards room={this.props.rooms? this.props.rooms[11] : null} lists={this.props.lists} onClickLike={this.props.onClickLike} onClickUnlike={this.props.onClickUnlike} onClickUnlikeRM={this.props.onClickUnlikeRM}/>
+            </CardContainer>
+          </ViewPort>
+        </ViewPortContainer>
       </div>
     )
   }
 
 }
 
+const ViewPortContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
 const ViewPort = styled.div`
   overflow-x: hidden !important;
-  margin-right: -24px !important;
   position: relative !important;
   width: 1140px;
-  height: 500px;
   backgroundColor: white;
   color: #222222 !important;
   font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
@@ -210,7 +216,6 @@ const Button = styled.div`
   border-style: solid !important;
   border-width: 1px !important;
   border-color: rgba(0, 0, 0, 0.08) !important;
-  transition: box-shadow 0.2s ease 0s, -ms-transform 0.25s ease 0s, -webkit-transform 0.25s ease 0s, transform 0.25s ease 0s !important;
   -webkit-writing-mode: horizontal-tb !important;
   text-rendering: auto;
   letter-spacing: normal;
@@ -226,6 +231,9 @@ const Icon = styled.svg`
   width: 10px;
   display: block;
   fill: currentcolor;
+  ${Button}:hover & {
+    transition: box-shadow 0.2s ease 0s, -ms-transform 0.25s ease 0s, -webkit-transform 0.25s ease 0s, transform 0.25s ease 0s !important;
+  }
 `
 
 

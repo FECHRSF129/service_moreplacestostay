@@ -1,6 +1,6 @@
 // This is to establish the databse
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/room', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
+mongoose.connect('mongodb://172.17.0.2/room', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 const dbroom = mongoose.connection;
 
 // Below is to verify whether it is connected to DB:
